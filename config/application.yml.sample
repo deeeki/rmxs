@@ -1,0 +1,13 @@
+---
+:soundcloud:
+  :consumer_key:
+:twitter:
+  :consumer_key:
+  :consumer_secret:
+  :access_token:
+  :access_token_secret:
+:wordpress:
+  :url:
+  :blog_id: 1
+  :username:
+  :password:
