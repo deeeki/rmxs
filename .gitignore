@@ -4,3 +4,4 @@ BLACKLIST
 WHITELIST
 log/*
 !log/.keep
+public/wp-config/*.php
