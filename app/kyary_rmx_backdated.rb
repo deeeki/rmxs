@@ -22,7 +22,7 @@ if tracks.empty?
 end
 
 tracks.each_with_index do |track, i|
-  next if uids.include?(track.uid)
+  next if uids.include?(track.uid.to_s)
 
   post = track.to_wordpress_post
   id = Wordpress::Xmlrpc.new_post(post)
