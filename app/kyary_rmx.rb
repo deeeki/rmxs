@@ -10,7 +10,7 @@ klass = Bremen.const_get(site)
 
 uids = Wordpress::Xmlrpc.get_uids(klass.name.split('::').last)
 
-tracks = klass.search(keyword: keyword, limit: 50, page: page)
+tracks = klass.search(keyword: keyword, limit: 50)
 exit if tracks.empty?
 
 tracks.reverse.each do |track|
