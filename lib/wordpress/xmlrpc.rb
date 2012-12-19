@@ -13,25 +13,25 @@ module Wordpress
       end
 
       def base_args
-        @base_args ||= [Wordpress.url, Wordpress.blog_id, Wordpress.password]
+        [Wordpress.blog_id, Wordpress.username, Wordpress.password]
       end
 
       def get_post post_id, fields = []
         args = [post_id]
         args << fields unless fields.empty?
-        client.call('wp.getPost', base_args.concat(args))
+        client.call('wp.getPost', (base_args + args))
       end
 
       def get_recent_posts limit = 20
-        client.call('wp.getRecentPosts', base_args.concat([limit]))
+        client.call('wp.getRecentPosts', (base_args + [limit]))
       end
 
       def get_uids category = nil
-        client.call('wp.getUids', base_args.concat([category]).compact)
+        client.call('wp.getUids', (base_args + [category]).compact)
       end
 
       def new_post struct
-        client.call('wp.newPost', base_args.concat([struct]))
+        client.call('wp.newPost', (base_args + [struct]))
       end
     end
   end
