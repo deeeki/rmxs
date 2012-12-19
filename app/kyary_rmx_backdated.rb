@@ -27,7 +27,7 @@ tracks.each_with_index do |track, i|
   post = track.to_wordpress_post
   id = Wordpress::Xmlrpc.new_post(post)
 
-  if track.allowable? && !track.deniable?
+  unless track.deniable?
     status = track.to_twitter_status
     Twitter.update(status)
   end
