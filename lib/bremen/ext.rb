@@ -24,7 +24,7 @@ module Bremen
         #post_parent: '',
         custom_fields: [
           {key: 'seconds', value: length},
-          {key: 'thumbnail_url', value: thumbnail_url},
+          {key: 'thumbnail_url', value: thumbnail_url || ''},
         ],
         #terms: [],
         terms_names: {
