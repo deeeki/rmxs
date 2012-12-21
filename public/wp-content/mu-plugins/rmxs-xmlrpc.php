@@ -44,7 +44,7 @@ class RmxsXmlrpc {
 		else {
 			$cat_id = 0;
 		}
-		$posts = get_posts('post_status=any&cat=' . $cat_id);
+		$posts = get_posts('post_status=any&posts_per_page=-1&cat=' . $cat_id);
 		$uids = array();
 		foreach($posts as $post) {
 			$uids[] = $post->post_content_filtered;
