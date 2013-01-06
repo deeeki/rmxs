@@ -64,7 +64,7 @@ namespace :config do
         remote_dir = "#{remote_config_path}/#{File.basename(dir)}"
         run "rm -rf #{remote_dir}.prev"
         run "cp -rf #{remote_dir} #{remote_dir}.prev"
-        Dir.glob("#{dir}/*").each do |file|
+        Dir.glob("#{dir}/{WHITELIST,BLACKLIST}").each do |file|
           upload(file, remote_dir, :via => :scp)
         end
       end
