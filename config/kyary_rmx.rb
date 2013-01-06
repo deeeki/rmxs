@@ -19,7 +19,7 @@ Twitter.configure do |config|
   config.oauth_token = @config[:twitter][:access_token]
   config.oauth_token_secret = @config[:twitter][:access_token_secret]
 end
-Bremen::Soundcloud.consumer_key = @config[:soundcloud][:consumer_key]
+Bremen::Soundcloud.client_id = @config[:soundcloud][:client_id]
 Bremen::Validator.configure do |config|
   config.whitelist_file = File.expand_path('../../config/kyary_rmx/WHITELIST', __FILE__)
   config.blacklist_file = File.expand_path('../../config/kyary_rmx/BLACKLIST', __FILE__)
