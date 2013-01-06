@@ -22,20 +22,52 @@ set :normalize_asset_timestamps, false
 
 after 'deploy:create_symlink', 'deploy:symlink_attachment'
 namespace :deploy do
-  task :start, :roles => :app, :except => { :no_release => true } do
+  task :start, :roles => :web, :except => { :no_release => true } do
     sudo '/etc/init.d/httpd restart', :pty => true
   end
 
   task :stop do ; end
 
-  task :restart, :roles => :app, :except => { :no_release => true } do
+  task :restart, :roles => :web, :except => { :no_release => true } do
     sudo '/etc/init.d/httpd restart', :pty => true
   end
 
-  task :symlink_attachment, :roles => :app, :except => { :no_release => true } do
+  task :symlink_attachment, :roles => :web, :except => { :no_release => true } do
     run "rm -rf #{current_path}/config/kyary_rmx && ln -fs #{shared_path}/config/kyary_rmx #{current_path}/config/kyary_rmx"
     run "rm -rf #{current_path}/public/wp-config && ln -fs #{shared_path}/public/wp-config #{current_path}/public/wp-config"
     run "ln -fs #{shared_path}/public/wp-content/uploads #{current_path}/public/wp-content/uploads"
   end
 end
 
+namespace :config do
+  namespace :deploy do
+    set :local_config_path, File.expand_path('../../config', __FILE__)
+    set :remote_config_path, "#{shared_path}/config"
+
+    task :default, :roles => :web do
+      transaction do
+        on_rollback do
+          Dir.glob("#{local_config_path}/*").each do |dir|
+            next unless File::ftype(dir) == 'directory'
+            remote_dir = "#{remote_config_path}/#{File.basename(dir)}"
+            run "rm -rf #{remote_dir}"
+            run "cp -rf #{remote_dir}.prev #{remote_dir}"
+          end
+        end
+        update
+      end
+    end
+
+    task :update, :roles => :web do
+      Dir.glob("#{local_config_path}/*").each do |dir|
+        next unless File::ftype(dir) == 'directory'
+        remote_dir = "#{remote_config_path}/#{File.basename(dir)}"
+        run "rm -rf #{remote_dir}.prev"
+        run "cp -rf #{remote_dir} #{remote_dir}.prev"
+        Dir.glob("#{dir}/*").each do |file|
+          upload(file, remote_dir, :via => :scp)
+        end
+      end
+    end
+  end
+end
