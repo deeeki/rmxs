@@ -1,6 +1,6 @@
 ---
 :soundcloud:
-  :consumer_key:
+  :client_id:
 :twitter:
   :consumer_key:
   :consumer_secret:
