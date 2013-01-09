@@ -38,17 +38,13 @@ class RmxsXmlrpc {
 		if ( !$wp_xmlrpc->login($username, $password) )
 			return $wp_xmlrpc->error;
 
-		if (isset($args[3]) && $category = get_category_by_slug($args[3])) {
-			$cat_id = $category->cat_ID;
-		}
-		else {
-			$cat_id = 0;
-		}
-		$posts = get_posts('post_status=any&posts_per_page=-1&cat=' . $cat_id);
-		$uids = array();
-		foreach($posts as $post) {
-			$uids[] = $post->post_content_filtered;
-		}
-		return $uids;
+		//currently not support filtering by category
+		//if (isset($args[3]) && $category = get_category_by_slug($args[3])) {
+			//$cat_id = $category->cat_ID;
+		//}
+		//else {
+			//$cat_id = 0;
+		//}
+		return $wpdb->get_col('SELECT post_content_filtered FROM ' . $wpdb->posts . ' WHERE post_content_filtered <> ""');
 	}
 }
