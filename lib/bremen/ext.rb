@@ -23,6 +23,7 @@ module Bremen
         #post_thumbnail: '',
         #post_parent: '',
         custom_fields: [
+          {key: 'uid', value: uid},
           {key: 'seconds', value: length},
           {key: 'thumbnail_url', value: thumbnail_url || ''},
         ],
@@ -80,7 +81,7 @@ Released at #{released_at}
       <<-CONTENT
 #{embed}
 <iframe width="312" height="176" src="http://ext.nicovideo.jp/thumb/#{uid}" scrolling="no" style="border:solid 1px #CCC;" frameborder="0">
-<a href="http://www.nicovideo.jp/watch/#{uid}">#{title}</a></iframe>
+<a href="http://www.nicovideo.jp/watch/#{uid}">#{title}</a></iframe><br />
 <a href="#{url}">#{title}</a><br />
 Released at #{released_at}<br />
       CONTENT

@@ -22,16 +22,26 @@ module Wordpress
         client.call('wp.getPost', (base_args + args))
       end
 
-      def get_recent_posts limit = 20
-        client.call('wp.getRecentPosts', (base_args + [limit]))
+      def get_posts filter = {}, fields = []
+        args = [filter]
+        args << fields unless fields.empty?
+        client.call('wp.getPosts', (base_args + args))
       end
 
       def get_uids category = nil
         client.call('wp.getUids', (base_args + [category]).compact)
       end
 
-      def new_post struct
-        client.call('wp.newPost', (base_args + [struct]))
+      def new_post content
+        client.call('wp.newPost', (base_args + [content]))
+      end
+
+      def edit_post post_id, content
+        client.call('wp.editPost', (base_args + [post_id, content]))
+      end
+
+      def delete_post post_id
+        client.call('wp.deletePost', (base_args + [post_id]))
       end
     end
   end
