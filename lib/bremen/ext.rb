@@ -34,11 +34,11 @@ module Bremen
       }.merge(options)
     end
 
-    def to_twitter_status
+    def to_twitter_status options = {}
       prefix = (created_at > (Time.now - 604800)) ? '*New!* ' : ''
       author = (self.author && self.author.name) ? "by #{self.author.name} " : ''
       released_on = created_at.strftime('%Y-%m-%d')
-      hashtag = (allowable? && !deniable?) ? '#KyaryPamyuPamyu' : ''
+      hashtag = (allowable? && !deniable?) ? options[:hashtag] || '' : ''
       url_length = (url =~ /^https:/) ? 23 : 22
       title_max_length = 140 - (prefix + author + released_on + hashtag).size - url_length - 4
       title = self.title

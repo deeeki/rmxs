@@ -20,7 +20,7 @@ tracks.reverse.each do |track|
   id = Wordpress::Xmlrpc.new_post(post)
 
   unless track.deniable?
-    status = track.to_twitter_status
+    status = track.to_twitter_status(hashtag: '#KyaryPamyuPamyu')
     Twitter.update(status)
   end
 
