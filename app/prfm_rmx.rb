@@ -19,7 +19,7 @@ tracks.reverse.each do |track|
   post = track.to_wordpress_post
   id = Wordpress::Xmlrpc.new_post(post)
 
-  unless track.deniable?
+  if track.allowable? || (site == 'Nicovideo' && !track.deniable?)
     status = track.to_twitter_status(hashtag: '#prfm')
     Twitter.update(status)
   end
