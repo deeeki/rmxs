@@ -1,20 +1,37 @@
+# coding: utf-8
 module Bremen
   module Validator
+    WHITELIST = [
+      '作業用',
+      'メドレー',
+      'bgm',
+    ]
+    BLACKLIST = [
+      '歌',
+      '踊',
+      'ってみた',
+      'album',
+      'pv',
+      'avi',
+      'wmv',
+      'cover',
+      'カバー',
+    ]
+
     class << self
       attr_writer :whitelist_file, :blacklist_file
-
       def configure
         yield self
       end
 
       def whitelist
         raise "must be set #{name}.whitelist_file" unless @whitelist_file
-        @whitelist ||= IO.read(@whitelist_file).split("\n")
+        @whitelist ||= IO.read(@whitelist_file).split("\n") + WHITELIST
       end
 
       def blacklist
         raise "must be set #{name}.blacklist_file" unless @blacklist_file
-        @blacklist ||= IO.read(@blacklist_file).split("\n")
+        @blacklist ||= IO.read(@blacklist_file).split("\n") + BLACKLIST
       end
     end
 
