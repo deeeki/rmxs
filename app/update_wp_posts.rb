@@ -42,6 +42,7 @@ max_id = Wordpress::Xmlrpc.get_posts({}, ['post_id']).first['post_id'].to_i
     end
   end
   content = track.to_wordpress_post
+  content[:post_status] = post['post_status']
   content.delete(:post_date_gmt)
   Wordpress::Xmlrpc.edit_post(id, content)
 end
