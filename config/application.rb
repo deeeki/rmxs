@@ -1,3 +1,5 @@
+abort(%[You must set "APP_NAME"]) unless defined?(APP_NAME)
+
 require 'bundler/setup'
 Bundler.require(:default) if defined?(Bundler)
 $:.unshift(File.expand_path('../../lib', __FILE__))
@@ -5,7 +7,7 @@ $:.unshift(File.expand_path('../../lib', __FILE__))
 require 'yaml'
 require 'bremen/ext'
 require 'wordpress'
-@config = YAML.load_file(File.expand_path('../../config/prfm_rmx/application.yml', __FILE__))
+@config = YAML.load_file(File.expand_path("../../config/#{APP_NAME}/application.yml", __FILE__))
 
 Wordpress.configure do |config|
   config.url = @config[:wordpress][:url]
@@ -21,6 +23,6 @@ Twitter.configure do |config|
 end
 Bremen::Soundcloud.client_id = @config[:soundcloud][:client_id]
 Bremen::Validator.configure do |config|
-  config.whitelist_file = File.expand_path('../../config/prfm_rmx/WHITELIST', __FILE__)
-  config.blacklist_file = File.expand_path('../../config/prfm_rmx/BLACKLIST', __FILE__)
+  config.whitelist_file = File.expand_path("../../config/#{APP_NAME}/WHITELIST", __FILE__)
+  config.blacklist_file = File.expand_path("../../config/#{APP_NAME}/BLACKLIST", __FILE__)
 end

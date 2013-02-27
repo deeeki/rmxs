@@ -1,5 +1,7 @@
 # coding: utf-8
-require File.expand_path('../../config/kyary_rmx', __FILE__)
+APP_NAME = 'kyary_rmx'
+
+require File.expand_path('../../config/application', __FILE__)
 
 SITES = ['Youtube', 'Nicovideo', 'Soundcloud', 'Mixcloud']
 

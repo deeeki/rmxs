@@ -1,5 +1,6 @@
-# coding: utf-8
-require File.expand_path('../../config/prfm_rmx', __FILE__)
+APP_NAME = 'prfm_rmx'
+
+require File.expand_path('../../config/application', __FILE__)
 
 SITES = ['Youtube', 'Nicovideo', 'Soundcloud', 'Mixcloud']
 

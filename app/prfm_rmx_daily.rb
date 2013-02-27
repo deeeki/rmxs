@@ -1,5 +1,7 @@
 # coding: utf-8
-require File.expand_path('../../config/prfm_rmx', __FILE__)
+APP_NAME = 'prfm_rmx'
+
+require File.expand_path('../../config/application', __FILE__)
 
 yesterday = Time.now.utc - 60 * 60 * 24
 posts = Wordpress::Xmlrpc.get_posts
