@@ -1,9 +1,9 @@
 # coding: utf-8
-unless app = ARGV.first
+unless APP_NAME = ARGV.first
   $stderr.puts 'ERROR: need to exec with app name (ARGV)'
   exit
 end
-require File.expand_path("../../config/#{app}", __FILE__)
+require File.expand_path("../../config/application", __FILE__)
 
 SITES = ['Youtube', 'Nicovideo', 'Soundcloud', 'Mixcloud']
 
