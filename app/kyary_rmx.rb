@@ -10,7 +10,7 @@ site = SITES[hour % 4]
 keyword = (hour < 12)? 'kyary mix' : 'きゃりー mix'
 klass = Bremen.const_get(site)
 
-uids = Wordpress::Xmlrpc.get_uids(klass.name.split('::').last)
+uids = Wordpress::Xmlrpc.get_uids(site)
 
 tracks = klass.search(keyword: keyword, limit: 50)
 exit if tracks.empty?
