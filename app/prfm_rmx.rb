@@ -6,7 +6,7 @@ SITES = ['Youtube', 'Nicovideo', 'Soundcloud', 'Mixcloud']
 
 hour = Time.now.hour
 site = SITES[hour % 4]
-keyword = (hour < 12)? 'Perfume mix' : 'Perfume rmx'
+keyword = (hour < 12)? 'Perfume mix' : 'Perfume Remix'
 klass = Bremen.const_get(site)
 
 uids = Wordpress::Xmlrpc.get_uids(site)
