@@ -4,8 +4,8 @@ APP_NAME = 'prfm_rmx'
 require File.expand_path('../../config/application', __FILE__)
 
 yesterday = Time.now.utc - 60 * 60 * 24
-posts = Wordpress::Xmlrpc.get_posts
-count = posts.reject{|p| p['post_status'] != 'publish' || p['post_date_gmt'].to_time <= yesterday }.count
+posts = Wordpress::Xmlrpc.get_posts(number: 24, post_status: 'publish')
+count = posts.reject{|p| p['post_date_gmt'].to_time <= yesterday }.count
 
 if count > 0
   status = %[【まとめ】本日(#{Time.now.strftime('%-m/%-d')})はRemix音源が#{count} 件みつかりました！ http://is.gd/prfm_rmx #prfm]
