@@ -3,11 +3,11 @@ APP_NAME = 'ystk_rmx'
 
 require File.expand_path('../../config/application', __FILE__)
 
-SITES = ['Youtube', 'Nicovideo', 'Soundcloud', 'Mixcloud']
+SITES = ['Youtube', 'Nicovideo', 'Soundcloud']
 
 hour = Time.now.hour
-site = SITES[hour % 4]
-keyword = (hour < 12)? 'ヤスタカ mix' : 'capsule mix'
+site = (hour == 8)? 'Mixcloud' : SITES[hour % 3]
+keyword = %[#{['ヤスタカ', 'yasutaka', 'capsule'].sample} #{['mix', 'Remix', 'MashUp'].sample}]
 klass = Bremen.const_get(site)
 
 uids = Wordpress::Xmlrpc.get_uids(site)
