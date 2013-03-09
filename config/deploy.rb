@@ -35,6 +35,7 @@ namespace :deploy do
   task :symlink_attachment, :roles => :web, :except => { :no_release => true } do
     run "ln -fs #{shared_path}/config/prfm_rmx #{current_path}/config/prfm_rmx"
     run "ln -fs #{shared_path}/config/ystk_rmx #{current_path}/config/ystk_rmx"
+    run "ln -fs #{shared_path}/config/mflo_rmx #{current_path}/config/mflo_rmx"
     run "ln -fs #{shared_path}/config/kyary_rmx #{current_path}/config/kyary_rmx"
     run "rm -rf #{current_path}/public/wp-config && ln -fs #{shared_path}/public/wp-config #{current_path}/public/wp-config"
     run "ln -fs #{shared_path}/public/wp-content/uploads #{current_path}/public/wp-content/uploads"
