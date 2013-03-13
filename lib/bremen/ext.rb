@@ -41,7 +41,7 @@ module Bremen
       released_on = created_at.strftime('%Y-%m-%d')
       hashtag = (allowable? && !deniable?) ? options[:hashtag] || '' : ''
       url_length = (url =~ /^https:/) ? 23 : 22
-      title_max_length = 140 - (prefix + author + released_on + hashtag).size - url_length - 4
+      title_max_length = 140 - (prefix + author + released_on + hashtag).size - url_length - 5
       title = self.title
       title = title[0, title_max_length - 4] + ' ...' if title.size > title_max_length
 
