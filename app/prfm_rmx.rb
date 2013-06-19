@@ -2,11 +2,19 @@ APP_NAME = 'prfm_rmx'
 
 require File.expand_path('../../config/application', __FILE__)
 
-SITES = ['Youtube', 'Nicovideo', 'Soundcloud']
+SITES = ['Youtube', 'Soundcloud']
 
 hour = Time.now.hour
-site = (hour == 8)? 'Mixcloud' : SITES[hour % 3]
-keyword = %[Perfume #{(hour < 12)? 'mix' : 'Remix'}]
+case hour
+when 1, 13
+  site = 'Mixcloud'
+when 7, 19
+  site = 'Nicovideo'
+else
+  site = SITES[hour % 2]
+end
+keyword = 'Perfume'
+keyword << ((hour < 12)? ' mix' : ' Remix') unless site == 'Soundcloud'
 klass = Bremen.const_get(site)
 
 uids = Wordpress::Xmlrpc.get_uids(site)
