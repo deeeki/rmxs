@@ -12,6 +12,7 @@ module Bremen
       'ってみた',
       'album',
       'pv',
+      'mv',
       'avi',
       'wmv',
       'cover',
