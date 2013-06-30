@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=9S8AJ
 Tags: head, header, footer, javascript, css, optimization, minified, performance, facebook, OGP
 Requires at least: 2.5
 Tested up to: 3.3.1
-Stable tag: 1.4.2.10
+Stable tag: 1.4.2.11
 
 Cleaning tags from your WordPress header and footer.
 

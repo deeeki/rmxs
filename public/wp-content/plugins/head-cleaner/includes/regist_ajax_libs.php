@@ -29,8 +29,10 @@ if (!defined('AJAX_LIBS_GOOGLE'))
 if (!defined('AJAX_LIBS_YUI'))
 	define('AJAX_LIBS_YUI', true);
 
-$jquery_ver = '1.7.2';
-if (version_compare($wp_version, "3.4.1", ">="))
+$jquery_ver = '1.8.3';
+if (version_compare($wp_version, "3.5", ">="))
+	$jquery_ver = '1.8.3';
+elseif (version_compare($wp_version, "3.4.1", ">="))
 	$jquery_ver = '1.7.2';
 elseif (version_compare($wp_version, "3.3", ">="))
 	$jquery_ver = '1.7.1';
