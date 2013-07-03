@@ -20,7 +20,9 @@ set :ssh_options, { :forward_agent => true }
 set :bundle_without, [:development, :test]
 set :normalize_asset_timestamps, false
 
+after 'deploy:setup', 'deploy:setup_symlink_dirs'
 after 'deploy:create_symlink', 'deploy:symlink_attachment'
+
 namespace :deploy do
   task :start, :roles => :web, :except => { :no_release => true } do
     sudo '/etc/init.d/httpd restart', :pty => true
@@ -30,6 +32,14 @@ namespace :deploy do
 
   task :restart, :roles => :web, :except => { :no_release => true } do
     sudo '/etc/init.d/httpd restart', :pty => true
+  end
+
+  task :setup_symlink_dirs, :roles => :web do
+    run "mkdir -p #{shared_path}/config/prfm_rmx"
+    run "mkdir -p #{shared_path}/config/ystk_rmx"
+    run "mkdir -p #{shared_path}/config/mflo_rmx"
+    run "mkdir -p #{shared_path}/config/kyary_rmx"
+    run "mkdir -p #{shared_path}/public/wp-content/uploads"
   end
 
   task :symlink_attachment, :roles => :web, :except => { :no_release => true } do
