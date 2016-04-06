@@ -8,7 +8,7 @@ module Bremen
       {
         post_type: 'post',
         post_status: deniable? ? 'draft' : allowable? ? 'publish' : 'pending',
-        post_title: title,
+        post_title: title.gsub(%r[</?[^>]+?>], ''),
         post_author: 0,
         post_excerpt: url,
         post_content: content,
